@@ -1,5 +1,9 @@
 module.exports = (app) => {
-  app.get('/', (req, res) => {
-    res.json({ message: 'Hello World' });
+  app.get('/login', (req, res) => {
+    res.render('login', {});
+  });
+
+  app.get('/dashboard', (req, res) => {
+    res.render('dashboard', {});
   });
 };
