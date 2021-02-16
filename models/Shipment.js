@@ -8,6 +8,9 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       allowNull: false,
       unique: true,
+      validate: {
+        len: [1, 50],
+      },
     },
     first_name: {
       type: DataTypes.STRING,
@@ -46,6 +49,5 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
   });
-
   return Shipment;
 };
