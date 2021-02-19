@@ -15,10 +15,11 @@ app.use(express.json());
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
+require('./routes/authRoutes')(app);
 require('./routes/apiRoutes')(app);
 require('./routes/htmlRoutes')(app);
 
-db.sequelize.sync().then(() => {
+db.sequelize.sync({ force: true }).then(() => {
   // eslint-disable-next-line no-console
   app.listen(PORT, () => console.log(`Listening on PORT ${PORT}`));
 });
