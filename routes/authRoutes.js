@@ -20,7 +20,7 @@ module.exports = (app) => {
       const newUser = await db.User.create({
         email: normalEmail,
         password,
-        first_name: firstName,
+        firstName,
       });
 
       return res.json({

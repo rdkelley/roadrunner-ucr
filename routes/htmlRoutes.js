@@ -12,6 +12,6 @@ module.exports = (app) => {
   });
 
   app.get('/dashboard', isAuth, (req, res) => {
-    res.render('dashboard', {});
+    res.render('dashboard', { firstName: req.user.firstName });
   });
 };

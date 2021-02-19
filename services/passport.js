@@ -32,7 +32,6 @@ passport.use(
 );
 
 passport.serializeUser((user, cb) => {
-  console.log('serializeUser ran');
   cb(null, user);
 });
 
