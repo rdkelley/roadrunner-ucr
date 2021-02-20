@@ -1,5 +1,6 @@
 const normalizeEmail = require('normalize-email');
 const db = require('../models');
+const passport = require('../services/passport');
 
 module.exports = (app) => {
   app.post('/api/users', async (req, res) => {
@@ -28,5 +29,11 @@ module.exports = (app) => {
         .status(503)
         .send('Something went wrong while creating a new user.');
     }
+  });
+
+  app.post('/api/login', passport.authenticate('local'), (req, res) => {
+    const { id } = req.user;
+
+    res.json({ id });
   });
 };

@@ -1,5 +1,7 @@
 const express = require('express');
 const exphbs = require('express-handlebars');
+const session = require('express-session');
+const passport = require('./services/passport');
 
 const db = require('./models');
 
@@ -12,6 +14,17 @@ app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+app.use(
+  session({
+    secret: 'some string that you shouldnt ever commit',
+    resave: true,
+    saveUninitialized: true,
+  })
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
@@ -19,7 +32,7 @@ require('./routes/authRoutes')(app);
 require('./routes/apiRoutes')(app);
 require('./routes/htmlRoutes')(app);
 
-db.sequelize.sync({ force: true }).then(() => {
+db.sequelize.sync({}).then(() => {
   // eslint-disable-next-line no-console
   app.listen(PORT, () => console.log(`Listening on PORT ${PORT}`));
 });
