@@ -1,6 +1,7 @@
 <section class="section login__container">
   <div class="columns is-vcentered is-centered login__formContainer">
     <div class="column is-one-third">
+
       <div class="field">
         <p class="control has-icons-left has-icons-right">
           <input id="email" class="input" type="email" placeholder="Email">
@@ -20,6 +21,13 @@
           </span>
         </p>
       </div>
+
+
+      <div id="incorrect_error" class="notification is-danger is-hidden">
+        <button class="delete"></button>
+        The email and password you entered is incorrect.
+      </div>
+
       <div class="field">
         <p class="control">
           <button id="login-button" class="button is-success">

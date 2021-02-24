@@ -9,18 +9,18 @@ const app = express();
 
 const PORT = process.env.PORT || 4000;
 
-app.use(express.static('public'));
-
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use(
   session({
-    secret: 'some string that you shouldnt ever commit',
-    resave: true,
-    saveUninitialized: true,
-  })
+    secret: 'some random string thats needs to be a secret',
+    resave: false,
+    saveUninitialized: false,
+  }),
 );
+
+app.use(express.static('public'));
 
 app.use(passport.initialize());
 app.use(passport.session());

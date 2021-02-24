@@ -3,7 +3,7 @@ const isAuth = (req, res, next) => {
     return res.redirect(401, '/login');
   }
 
-  next();
+  return next();
 };
 
 module.exports = (app) => {
@@ -12,8 +12,6 @@ module.exports = (app) => {
   });
 
   app.get('/dashboard', isAuth, (req, res) => {
-    res.render('dashboard', {
-      firstName: req.user.firstName,
-    });
+    res.render('dashboard', { firstName: req.user.firstName });
   });
 };

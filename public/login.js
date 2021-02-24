@@ -6,10 +6,11 @@ const errorToString = (e) => {
 };
 
 loginButton.addEventListener('click', () => {
-  const emailInput = document.getElementById('email').value.trim();
-  const passwordInput = document.getElementById('password').value.trim();
-
   loginButton.classList.add('is-loading');
+  document.getElementById('incorrect_error').classList.add('is-hidden');
+
+  const emailInput = document.getElementById('email').value;
+  const passwordInput = document.getElementById('password').value;
 
   fetch('/api/login', {
     method: 'POST',
@@ -23,8 +24,6 @@ loginButton.addEventListener('click', () => {
     }),
   })
     .then((response) => {
-      console.log(response);
-
       if (!response.ok) {
         loginButton.classList.remove('is-loading');
 
@@ -40,7 +39,9 @@ loginButton.addEventListener('click', () => {
     })
     .catch((error) => {
       if (errorToString(error) === '401') {
-        console.log('401 error');
+        document
+          .getElementById('incorrect_error')
+          .classList.remove('is-hidden');
       }
     });
 });
