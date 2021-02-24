@@ -2,6 +2,14 @@ const normalizeEmail = require('normalize-email');
 const db = require('../models');
 const passport = require('../services/passport');
 
+const isAuth = (req, res, next) => {
+  if (!req.isAuthenticated()) {
+    return res.redirect(401, '/login');
+  }
+
+  return next();
+};
+
 module.exports = (app) => {
   app.post('/api/users', async (req, res) => {
     const { email, password, firstName } = req.body;
@@ -38,6 +46,13 @@ module.exports = (app) => {
       email: req.user.email,
       id: req.user.id,
       firstName: req.user.firstName,
+    });
+  });
+
+  app.post('/api/logout', isAuth, async (req, res) => {
+    req.session.destroy(() => {
+      res.clearCookie('connect.sid', { path: '/' });
+      res.send(true);
     });
   });
 };
