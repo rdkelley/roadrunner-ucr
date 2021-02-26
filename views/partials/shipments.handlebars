@@ -1,0 +1,27 @@
+<article class="panel is-link">
+  <p class="panel-heading">
+    Deliveries
+  </p>
+  <p class="panel-tabs">
+    <a class="is-active">All</a>
+    <a>Today</a>
+    <a>Priority</a>
+    <a>Regular</a>
+  </p>
+
+  <div class="dashboard__listContainer">
+    {{#each shipments}}
+    <a class="panel-block is-active">
+      <span class="panel-icon dashboard__truckIcon">
+        <i class="fas fa-shipping-fast" aria-hidden="true"></i>
+      </span>
+      <div>
+        <p>8042 Limonite Blvd Jurupa Valley CA 92509</p>
+        <p class="is-size-7">Placed 2021-02-07 08:51:41 &#xb7; Priority</p>
+      </div>
+    </a>
+    {{/each}}
+  </div>
+
+
+</article>

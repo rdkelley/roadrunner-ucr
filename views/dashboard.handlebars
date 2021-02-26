@@ -1,13 +1,10 @@
-<section class="section">
-  <div class="container">
-    <h1 class="title">
-      Dashboard
-    </h1>
-    <p class="subtitle">
-      Welcome, <strong>{{firstName}}</strong>!
-    </p>
-    <button id="logout-button" class="button is-link">Logout</button>
-  </div>
-</section>
+<div class="dashboard__mapCol">
+  <div id='map' class="dashboard__mapContainer"></div>
+</div>
 
+<div class="dashboard__shipmentsContainer">
+  {{> shipments }}
+</div>
+
+<script src="./map.js"></script>
 <script src="./dashboard.js"></script>
